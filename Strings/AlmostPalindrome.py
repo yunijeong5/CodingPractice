@@ -1,3 +1,10 @@
+"""
+680. Valid Palindrome II
+
+Given a string s, return true 
+if the s can be palindrome after deleting at most one character from it.
+
+"""
 def almostPalindrome(s: str) -> bool:
   # assume that s only consists of lowercase chars. 
   def subpalindrome(s, l, r):

@@ -1,3 +1,11 @@
+"""
+3. Longest Substring Without Repeating Characters
+
+Given a string s, 
+find the length of the longest substring without repeating characters.
+
+"""
+
 # Brute Force: Time O(n^2), Space O(n)
 def lengthOfLongestSubstring1(s):
   if len(s) <= 0:

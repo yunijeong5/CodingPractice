@@ -1,3 +1,41 @@
+"""
+42. Trapping Rain Water
+
+Given n non-negative integers representing an elevation map 
+where the width of each bar is 1, compute how much water it can trap after raining.
+"""
+
+# Optimal Solution: T--O(n), S--O(1)
+def trap(height):
+  if len(height) <= 2:
+    return 0
+
+  l = maxl = maxr = water = 0
+  r = len(height)-1
+
+  while l < r:
+    hl = height[l]
+    hr = height[r]
+
+    if hl <= hr:
+      if hl < maxl:
+        water += maxl - hl
+      else:
+        maxl = hl
+      l += 1
+    else:
+      if hr < maxr:
+        water += maxr - hr
+      else:
+        maxr = hr
+      r -= 1
+
+  return water
+
+
+print(trap([0,1,0,2,1,0,1,3,2,1,2,1]))
+print(trap([4,2,0,3,2,5]))
+
 # Wrong Attempt
 # def trap(height):
 #     if len(height) <= 1:
@@ -61,35 +99,4 @@
         
 #     return water
 
-
-# Optimal Solution: T--O(n), S--O(1)
-def trap(height):
-  if len(height) <= 2:
-    return 0
-
-  l = maxl = maxr = water = 0
-  r = len(height)-1
-
-  while l < r:
-    hl = height[l]
-    hr = height[r]
-
-    if hl <= hr:
-      if hl < maxl:
-        water += maxl - hl
-      else:
-        maxl = hl
-      l += 1
-    else:
-      if hr < maxr:
-        water += maxr - hr
-      else:
-        maxr = hr
-      r -= 1
-
-  return water
-
-
-print(trap([0,1,0,2,1,0,1,3,2,1,2,1]))
-print(trap([4,2,0,3,2,5]))
 

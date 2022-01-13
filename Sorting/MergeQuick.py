@@ -46,7 +46,7 @@ def quickSort(arr):
   if len(arr) <= 1:
     return arr
   
-  curPos = 0 # Position of partitioning element
+  curPos = 0
 
   for i in range(1, len(arr)):
     if arr[i] <= arr[0]: # @ arr[0]: value less than or equal to pivot
