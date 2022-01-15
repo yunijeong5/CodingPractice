@@ -39,7 +39,7 @@ def traverseInorder(cur, result):
   return result
 
 
-# left, right, root
+# Postorder: left, right, root
 def DFS_Postorder(root):
   if root == None:
     return root
@@ -56,9 +56,9 @@ def traversePostorder(cur, result):
 
 root = TreeNode(9, TreeNode(4, TreeNode(1, None, None), TreeNode(6, None, None)), TreeNode(20, TreeNode(15, None, None), TreeNode(170, None, None)))
 
-print('inorder', DFS_Inorder(root))
-print('postorder', DFS_Postorder(root))
-print('preorder', DFS_Preorder(root))
+# print('inorder', DFS_Inorder(root))
+# print('postorder', DFS_Postorder(root))
+# print('preorder', DFS_Preorder(root))
 
 #          9
 #       /     \
@@ -66,3 +66,8 @@ print('preorder', DFS_Preorder(root))
 #   /   \    /  \
 # 1      6  15  170
 
+root2 = TreeNode(1, TreeNode(2, TreeNode(4, None, TreeNode(7, TreeNode(8, None, None), None)), TreeNode(5, None, None)), TreeNode(3, None, TreeNode(6, None, None)))
+
+print('inorder', DFS_Inorder(root2))
+print('postorder', DFS_Postorder(root2))
+print('preorder', DFS_Preorder(root2))
