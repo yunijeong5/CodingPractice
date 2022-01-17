@@ -1,5 +1,4 @@
 def findKthLargest(nums, k):
-  print(nums, k, len(nums)==1)
   if len(nums) == 1:
     return nums[0]
   elif len(nums) == 0:
@@ -14,7 +13,6 @@ def findKthLargest(nums, k):
 
   nums[0], nums[curPos] = nums[curPos], nums[0]
 
-  print(curPos, k-1)
   if curPos == k-1:
     return nums[curPos]
   elif curPos > k-1:
