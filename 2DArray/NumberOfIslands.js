@@ -86,6 +86,7 @@ const directions = [
 
 const numIslands2 = function (grid) {
   if (grid.length === 0 || grid[0].length === 0) return 0;
+
   let island_count = 0;
 
   for (let row = 0; row < grid.length; row++) {
