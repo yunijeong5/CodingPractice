@@ -14,51 +14,17 @@
  * @return {number}
  */
 const numIslands = function (grid) {
-  if (grid.length == 0) {
-    return 0;
-  }
-  if (grid[0].length == 0) {
-    return 0;
-  }
+  if (grid.length == 0 || grid[0].length == 0) return 0;
+
+  const directions = [
+    [-1, 0],
+    [0, 1],
+    [1, 0],
+    [-1, 0],
+  ]; // up, right, down, left
 
   const isInGrid = function (r, c) {
     return r >= 0 && r < grid.length && c >= 0 && c < grid[0].length;
-  };
-
-  const bfs = function (row, col) {
-    const seen = new Array(grid.length)
-      .fill(0)
-      .map(() => new Array(grid[0].length).fill(false));
-
-    const queue = [[row, col]];
-    const directions = [
-      [-1, 0],
-      [0, 1],
-      [1, 0],
-      [0, -1],
-    ]; // up, right, down, left
-
-    seen[row][col] = true;
-
-    while (queue.length > 0) {
-      const cur = queue.shift();
-      const r = cur[0];
-      const c = cur[1];
-      grid[r][c] = "0";
-
-      for (let i = 0; i < directions.length; i++) {
-        const new_row = r + directions[i][0];
-        const new_col = c + directions[i][1];
-        if (
-          isInGrid(new_row, new_col) &&
-          grid[new_row][new_col] == "1" &&
-          !seen[new_row][new_col]
-        ) {
-          queue.push([new_row, new_col]);
-          seen[new_row][new_col] = true;
-        }
-      }
-    }
   };
 
   let island_count = 0;
@@ -66,8 +32,27 @@ const numIslands = function (grid) {
   for (let i = 0; i < grid.length; i++) {
     for (let j = 0; j < grid[0].length; j++) {
       if (grid[i][j] == "1") {
-        bfs(i, j);
         island_count++;
+        const queue = [[i, j]];
+
+        while (queue.length) {
+          const cur = queue.shift();
+          const r = cur[0];
+          const c = cur[1];
+          grid[r][c] = "0";
+
+          for (dir of directions) {
+            const next_row = r + dir[0];
+            const next_col = c + dir[1];
+
+            if (
+              isInGrid(next_row, next_col) &&
+              grid[next_row][next_col] == "1"
+            ) {
+              queue.push([next_row, next_col]);
+            }
+          }
+        }
       }
     }
   }
@@ -129,15 +114,15 @@ const numIslands2 = function (grid) {
 };
 
 const grid1 = [
-  ["1", "0", "0", "0", "1"],
-  ["0", "1", "0", "1", "0"],
+  ["1", "1", "1", "0", "1"],
+  ["0", "1", "1", "1", "0"],
   ["0", "0", "1", "0", "0"],
   ["0", "1", "0", "1", "0"],
   ["1", "0", "0", "0", "1"],
 ];
 
 const grid2 = [
-  ["1", "0", "0", "0", "1"],
+  ["1", "1", "0", "0", "1"],
   ["0", "1", "0", "1", "0"],
   ["0", "0", "1", "0", "0"],
   ["0", "1", "0", "1", "0"],
