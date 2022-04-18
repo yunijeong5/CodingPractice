@@ -20,7 +20,6 @@ def longestPalindromeSubseq(s):
       # return dp[0][n-1]
       
       
-      
       # table
       n = len(s)
       dp = [[None for c in range(n)] for r in range(n)]
